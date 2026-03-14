@@ -22,14 +22,14 @@ export default function AnalyticsEngine() {
         return () => clearInterval(interval);
     }, []);
 
-    const totalRevenue = Object.values(stats).reduce((acc, curr) => acc + curr.revenue, 0);
+    // totalRevenue is unused
     const totalCount = Object.values(stats).reduce((acc, curr) => acc + curr.count, 0);
     const maxRevenue = Math.max(...Object.values(stats).map(s => s.revenue), 1);
 
     // Calculate Pie Chart segments (CSS Conic Gradient)
     let cumulativePercent = 0;
     const segments = Object.entries(stats)
-        .filter(([_, data]) => data.count > 0)
+        .filter(([, data]) => data.count > 0)
         .map(([type, data]) => {
             const percent = (data.count / (totalCount || 1)) * 100;
             const start = cumulativePercent;

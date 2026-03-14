@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+/* eslint-disable @next/next/no-img-element */
+
 export default function LanderPage() {
     return (
         <div style={{ minHeight: '100vh', background: 'var(--bg-primary)', color: 'white', fontFamily: 'var(--font-body)' }}>
@@ -63,7 +65,7 @@ export default function LanderPage() {
                             collections that redefine modern luxury.
                         </p>
                         <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '24px' }}>
-                            Our heritage is built on trust and the pursuit of perfection. Whether it's the 24K shine of our bullion
+                            Our heritage is built on trust and the pursuit of perfection. Whether it&apos;s the 24K shine of our bullion
                             or the intricate detail of our handcrafted ornaments, we ensure that every customer walks away
                             with a piece of timeless value.
                         </p>

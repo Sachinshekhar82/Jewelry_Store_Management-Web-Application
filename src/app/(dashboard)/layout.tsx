@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { logoutUser } from "@/app/(dashboard)/actions/auth";
 export default function DashboardLayout({

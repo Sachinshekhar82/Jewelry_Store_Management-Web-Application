@@ -1,0 +1,23 @@
+
+./src/app/(dashboard)/actions/analytics.ts
+18:34  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+19:36  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/(dashboard)/dashboard/page.tsx
+9:11  Error: 'prices' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+24:69  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+24:92  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+30:59  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+31:73  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+31:96  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+97:61  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+106:85  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+106:114  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
+
+./src/app/(dashboard)/layout.tsx
+3:27  Error: 'useEffect' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./src/app/(dashboard)/transactions/page.tsx
+4:8  Error: 'Link' is defined but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules

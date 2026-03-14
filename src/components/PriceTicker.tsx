@@ -4,7 +4,13 @@ import React, { useState, useEffect } from "react";
 import { fetchPrices } from "@/app/(dashboard)/actions/prices";
 
 export default function PriceTicker() {
-    const [prices, setPrices] = useState<any>(null);
+    type PricesData = {
+        gold: Record<number, number>;
+        silver: number;
+        platinum: number;
+        palladium: number;
+    };
+    const [prices, setPrices] = useState<PricesData | null>(null);
 
     useEffect(() => {
         const loadPrices = async () => {

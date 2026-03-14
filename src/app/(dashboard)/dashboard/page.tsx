@@ -6,7 +6,7 @@ import Link from "next/link";
 export const revalidate = 0; // Ensure live data
 
 export default async function DashboardPage() {
-    const prices = await getLiveMetalPrices();
+    await getLiveMetalPrices(); // Fetch to trigger cache/update if needed
 
     // Fetch fresh data for transactions
     const recentTransactions = await prisma.transaction.findMany({
@@ -21,14 +21,14 @@ export default async function DashboardPage() {
     const allTransactions = await prisma.transaction.findMany();
 
     // Calculate stats
-    const totalRevenue = allTransactions.reduce((acc: number, curr: any) => acc + (curr as any).finalAmount, 0);
+    const totalRevenue = allTransactions.reduce((acc: number, curr: { finalAmount: number }) => acc + curr.finalAmount, 0);
     const totalCount = allTransactions.length;
 
     // Weekly revenue
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-    const weeklyTransactions = allTransactions.filter((t: any) => new Date(t.createdAt) >= oneWeekAgo);
-    const weeklyRevenue = weeklyTransactions.reduce((acc: number, curr: any) => acc + (curr as any).finalAmount, 0);
+    const weeklyTransactions = allTransactions.filter((t: { createdAt: Date }) => new Date(t.createdAt) >= oneWeekAgo);
+    const weeklyRevenue = weeklyTransactions.reduce((acc: number, curr: { finalAmount: number }) => acc + curr.finalAmount, 0);
 
     return (
         <div className="animate-fade-in" style={{ position: 'relative' }}>
@@ -94,7 +94,7 @@ export default async function DashboardPage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {recentTransactions.map((t: any) => (
+                                {recentTransactions.map((t: { id: string; createdAt: Date; customer?: { name: string } | null; paymentMethod: string; finalAmount: number; items: { type?: string | null }[] }) => (
                                     <tr key={t.id} style={{ borderBottom: "1px solid rgba(255,255,255,0.02)", transition: 'background 0.3s ease' }}>
                                         <td style={{ opacity: 0.5, fontSize: '0.8rem' }}>#{t.id.slice(-8).toUpperCase()}</td>
                                         <td>
@@ -103,7 +103,7 @@ export default async function DashboardPage() {
                                         </td>
                                         <td>
                                             <div style={{ display: 'flex', gap: '6px' }}>
-                                                {Array.from(new Set(t.items.map((i: any) => i.type))).map((type: any, idx: number) => (
+                                                {Array.from(new Set(t.items.map((i: { type?: string | null }) => i.type))).map((type: string | null | undefined, idx: number) => (
                                                     <span key={idx} className="badge" style={{ fontSize: '0.6rem', padding: '2px 8px', borderColor: type === 'GOLD' ? 'var(--accent-gold)' : 'var(--glass-border)' }}>{type}</span>
                                                 ))}
                                             </div>

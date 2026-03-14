@@ -15,8 +15,8 @@ export async function getLiveAnalytics() {
             PALLADIUM: { revenue: 0, count: 0 }
         };
 
-        transactions.forEach((t: any) => {
-            t.items.forEach((item: any) => {
+        transactions.forEach((t: { items: Array<{ type?: string | null; totalPrice: number }> }) => {
+            t.items.forEach((item: { type?: string | null; totalPrice: number }) => {
                 if (!item.type) return;
                 const type = item.type.toUpperCase();
                 if (typeStats[type]) {
